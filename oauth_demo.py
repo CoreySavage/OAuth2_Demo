@@ -26,16 +26,16 @@ env = Environment(
 
 
 class OauthHandler(webapp2.RequestHandler):
-	def get(self):
-		logging.debug('The contents of the GET request are:' + repr(self.request.GET))
+    def get(self):
+        logging.debug('The contents of the GET request are:' + repr(self.request.GET))
 
 
 class MainPage(webapp2.RequestHandler):
-	def get(self):
-		
+    def get(self):
+        self.response.write("Hi")
 
 
 app = webapp2.WSGIApplication([
-	('/', MainPage),
-	('/oauth', OauthHandler)
+    ('/', MainPage),
+    ('/oauth', OauthHandler)
 ], debug=True)
