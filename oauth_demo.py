@@ -24,8 +24,6 @@ env = Environment(
     autoescape=select_autoescape(['html', 'xml'])
 )
 
-loader = FileSystemLoader('/path/to/templates')
-
 
 class OauthHandler(webapp2.RequestHandler):
 	def get(self):
@@ -34,8 +32,7 @@ class OauthHandler(webapp2.RequestHandler):
 
 class MainPage(webapp2.RequestHandler):
 	def get(self):
-		template = env.get_template('index.html')
-		print template.render(a_variable = "Sup pimp")
+		
 
 
 app = webapp2.WSGIApplication([
