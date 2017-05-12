@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>My Webpage</title>
+    <title>OAuth Demo</title>
+    <meta name="Corey Savage" content="Website by: Corey Savage" />
+    <link rel="stylesheet" type="text/css" href="/static/style-v1.8.css">
 </head>
 <body>
 
-    <h1>{{ title }}</h1>
-    {{ a_variable }}
+	<div class="landing">
+		<h1>Savy's OAuth 2.0 Demo</h1>
+    </div>
+    <div class="info">
+	    <h2>{{ sectionTitle }}{{ userName }}</h2>
 
-    <a href="{{ url }}">Login with Google</a>
-
-    {# a comment #}
-
-    <form action="https://oauth2demo-167110.appspot.com" method="post">
-
-  <div>
-    <button>Send my greetings</button>
-  </div>
-</form>
+	    {% if guest is defined %}
+	    <form class="oauth" action="https://oauth2demo-167110.appspot.com" method="post">
+	    		<button>Authenticate With Google</button>
+	    </form>
+	    {% endif %}
+    </div>
 
 </body>
 </html>
+
+
