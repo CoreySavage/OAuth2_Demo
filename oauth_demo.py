@@ -104,7 +104,7 @@ class MainPage(webapp2.RequestHandler):
             self.response.write(template.render(template_values))
         else:
             template_values = {
-                'greeting':'Welcome, stranger!',
+                'greeting':'Welcome, Stranger!',
                 'guest':'True'
             }
             template = jinja_environment.get_template('index.html')
