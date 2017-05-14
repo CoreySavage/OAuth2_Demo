@@ -64,11 +64,12 @@ class OauthHandler(webapp2.RequestHandler):
 
                 results_json = json.loads(user_info.content)
                 userName = results_json['displayName']
-                userEmail = results_json['emails']
+                userURL = results_json['url']
                 url='https://oauth2demo-167110.appspot.com'
                 user_data_to_post = urllib.urlencode({
                     'displayName': userName,
-                    'email': userEmail})
+                    'url': userURL
+                })
                 try:
                     address = url + '?' + user_data_to_post
                     self.redirect(address)
@@ -82,29 +83,22 @@ class OauthHandler(webapp2.RequestHandler):
             logging.exception('Caught exception fetching url')
 
 
-    def post(self):
-        self.response.write("PPPPOOOOOO")
-        authorizeString = 'Bearer ' + json_result['access_token']
-        req = urllib2.Request('https://www.googleapis.com/plus/v1/people/me')
-        req.add_header('Authorization', authorizeString)
-        resp = urllib2.urlopen(req)
-        content = resp.read()
-        self.response.write(content)
-
-
 class MainPage(webapp2.RequestHandler):
     def get(self):
         if self.request.get('displayName'):
             userName = self.request.get('displayName')
+            userURL = self.request.get('url')
             template_values = {
-                'greeting':'Welcome, ',
-                'userName':userName
+                'greeting':'Well Done, ',
+                'userName':userName,
+                'userURL':userURL,
+                'secret_key':secret_key
             }
             template = jinja_environment.get_template('index.html')
             self.response.write(template.render(template_values))
         else:
             template_values = {
-                'greeting':'Welcome, Stranger!',
+                'greeting':'Welcome, Stranger',
                 'guest':'True'
             }
             template = jinja_environment.get_template('index.html')
